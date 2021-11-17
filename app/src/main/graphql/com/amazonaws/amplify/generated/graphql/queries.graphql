@@ -1,0 +1,28 @@
+# this is an auto generated file. This will be overwritten
+query GetDetails($id: ID!) {
+  getDetails(id: $id) {
+    id
+    title
+    body
+    state
+    createdAt
+    updatedAt
+  }
+}
+query ListDetailss(
+  $filter: ModelDetailsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDetailss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      title
+      body
+      state
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
