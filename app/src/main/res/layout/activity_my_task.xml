@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyTask">
+
+    androidx.recyclerview.widget.RecyclerView
+
+<!--    <Button-->
+<!--        android:id="@+id/task2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Task2"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/toolbar"-->
+<!--        app:layout_constraintVertical_bias="0.691" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/task3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Task3"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.95"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/toolbar"-->
+<!--        app:layout_constraintVertical_bias="0.68" />-->
+
+    <Button
+        android:id="@+id/log_out_button"
+        android:layout_width="156dp"
+        android:layout_height="47dp"
+        android:text="Logout"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115" />
+
+    <TextView
+        android:id="@+id/FirstText"
+        android:layout_width="172dp"
+        android:layout_height="59dp"
+        android:text="@string/my_tasks"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.259"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.199" />
+
+
+    <Button
+        android:id="@+id/AllTasks"
+        android:layout_width="108dp"
+        android:layout_height="58dp"
+        android:text="@string/all_tasks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.797" />
+
+    <Button
+        android:id="@+id/AddTask"
+        android:layout_width="118dp"
+        android:layout_height="60dp"
+        android:text="@string/add_task"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:backgroundTint="@color/blue"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints"
+        />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="214dp"
+        android:layout_height="200dp"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/taskmaster"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
+
+<!--    <Button-->
+<!--        android:id="@+id/task1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Task1"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.049"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/toolbar"-->
+<!--        app:layout_constraintVertical_bias="0.68" />-->
+
+    <Button
+        android:id="@+id/Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.916" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.222" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMain"
+        android:layout_width="409dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

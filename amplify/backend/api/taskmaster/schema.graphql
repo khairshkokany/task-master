@@ -1,0 +1,6 @@
+type Details @model{
+    id: ID!
+    title: String!
+    body: String
+    state: String
+}

@@ -1,0 +1,40 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateDetails(
+  $input: CreateDetailsInput!
+  $condition: ModelDetailsConditionInput
+) {
+  createDetails(input: $input, condition: $condition) {
+    id
+    title
+    body
+    state
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDetails(
+  $input: UpdateDetailsInput!
+  $condition: ModelDetailsConditionInput
+) {
+  updateDetails(input: $input, condition: $condition) {
+    id
+    title
+    body
+    state
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDetails(
+  $input: DeleteDetailsInput!
+  $condition: ModelDetailsConditionInput
+) {
+  deleteDetails(input: $input, condition: $condition) {
+    id
+    title
+    body
+    state
+    createdAt
+    updatedAt
+  }
+}
