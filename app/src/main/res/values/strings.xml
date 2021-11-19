@@ -14,5 +14,7 @@
     <string name="taskmaster">TaskMaster</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="channel_name">title</string>
+    <string name="channel_description">body</string>
 
 </resources>
