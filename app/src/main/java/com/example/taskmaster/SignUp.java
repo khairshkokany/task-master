@@ -61,6 +61,8 @@ public class SignUp extends AppCompatActivity {
 
                 Intent intent = new Intent(SignUp.this, ConfirmPage.class);
                 startActivity(intent);
+                MyTask.analyticsEvent();
+
 
             }
 
@@ -71,6 +73,8 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SignUp.this , SignIn.class);
                 startActivity(intent);
+                MyTask.analyticsEvent();
+
             }
         });
     }

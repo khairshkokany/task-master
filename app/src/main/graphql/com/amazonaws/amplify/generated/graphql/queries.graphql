@@ -1,4 +1,32 @@
 # this is an auto generated file. This will be overwritten
+query SyncDetails(
+  $filter: ModelDetailsFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDetails(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      title
+      body
+      state
+      imageName
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
 query GetDetails($id: ID!) {
   getDetails(id: $id) {
     id
@@ -6,6 +34,9 @@ query GetDetails($id: ID!) {
     body
     state
     imageName
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -22,9 +53,13 @@ query ListDetailss(
       body
       state
       imageName
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
+    startedAt
   }
 }
