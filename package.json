@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@aws-amplify/pushnotification": "^4.3.5",
+    "aws-amplify": "^4.3.8"
+  }
+}
