@@ -8,6 +8,7 @@ mutation CreateDetails(
     title
     body
     state
+    imageName
     createdAt
     updatedAt
   }
@@ -21,6 +22,7 @@ mutation UpdateDetails(
     title
     body
     state
+    imageName
     createdAt
     updatedAt
   }
@@ -34,6 +36,7 @@ mutation DeleteDetails(
     title
     body
     state
+    imageName
     createdAt
     updatedAt
   }

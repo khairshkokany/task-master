@@ -24,10 +24,12 @@ public final class Details implements Model {
   public static final QueryField TITLE = field("Details", "title");
   public static final QueryField BODY = field("Details", "body");
   public static final QueryField STATE = field("Details", "state");
+  public static final QueryField IMAGE_NAME = field("Details", "imageName");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String") String body;
   private final @ModelField(targetType="String") String state;
+  private final @ModelField(targetType="String") String imageName;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -46,6 +48,10 @@ public final class Details implements Model {
       return state;
   }
   
+  public String getImageName() {
+      return imageName;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -54,11 +60,12 @@ public final class Details implements Model {
       return updatedAt;
   }
   
-  private Details(String id, String title, String body, String state) {
+  private Details(String id, String title, String body, String state, String imageName) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
+    this.imageName = imageName;
   }
   
   @Override
@@ -73,6 +80,7 @@ public final class Details implements Model {
               ObjectsCompat.equals(getTitle(), details.getTitle()) &&
               ObjectsCompat.equals(getBody(), details.getBody()) &&
               ObjectsCompat.equals(getState(), details.getState()) &&
+              ObjectsCompat.equals(getImageName(), details.getImageName()) &&
               ObjectsCompat.equals(getCreatedAt(), details.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), details.getUpdatedAt());
       }
@@ -85,6 +93,7 @@ public final class Details implements Model {
       .append(getTitle())
       .append(getBody())
       .append(getState())
+      .append(getImageName())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -99,6 +108,7 @@ public final class Details implements Model {
       .append("title=" + String.valueOf(getTitle()) + ", ")
       .append("body=" + String.valueOf(getBody()) + ", ")
       .append("state=" + String.valueOf(getState()) + ", ")
+      .append("imageName=" + String.valueOf(getImageName()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -122,6 +132,7 @@ public final class Details implements Model {
       id,
       null,
       null,
+      null,
       null
     );
   }
@@ -130,7 +141,8 @@ public final class Details implements Model {
     return new CopyOfBuilder(id,
       title,
       body,
-      state);
+      state,
+      imageName);
   }
   public interface TitleStep {
     BuildStep title(String title);
@@ -142,6 +154,7 @@ public final class Details implements Model {
     BuildStep id(String id);
     BuildStep body(String body);
     BuildStep state(String state);
+    BuildStep imageName(String imageName);
   }
   
 
@@ -150,6 +163,7 @@ public final class Details implements Model {
     private String title;
     private String body;
     private String state;
+    private String imageName;
     @Override
      public Details build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -158,7 +172,8 @@ public final class Details implements Model {
           id,
           title,
           body,
-          state);
+          state,
+          imageName);
     }
     
     @Override
@@ -180,6 +195,12 @@ public final class Details implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep imageName(String imageName) {
+        this.imageName = imageName;
+        return this;
+    }
+    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -192,11 +213,12 @@ public final class Details implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, String state) {
+    private CopyOfBuilder(String id, String title, String body, String state, String imageName) {
       super.id(id);
       super.title(title)
         .body(body)
-        .state(state);
+        .state(state)
+        .imageName(imageName);
     }
     
     @Override
@@ -212,6 +234,11 @@ public final class Details implements Model {
     @Override
      public CopyOfBuilder state(String state) {
       return (CopyOfBuilder) super.state(state);
+    }
+    
+    @Override
+     public CopyOfBuilder imageName(String imageName) {
+      return (CopyOfBuilder) super.imageName(imageName);
     }
   }
   

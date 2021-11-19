@@ -3,4 +3,5 @@ type Details @model{
     title: String!
     body: String
     state: String
+    imageName : String
 }
