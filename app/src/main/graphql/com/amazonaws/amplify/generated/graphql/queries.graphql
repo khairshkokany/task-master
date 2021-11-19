@@ -5,6 +5,7 @@ query GetDetails($id: ID!) {
     title
     body
     state
+    imageName
     createdAt
     updatedAt
   }
@@ -20,6 +21,7 @@ query ListDetailss(
       title
       body
       state
+      imageName
       createdAt
       updatedAt
     }

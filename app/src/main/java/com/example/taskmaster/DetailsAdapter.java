@@ -11,20 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Details;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder> {
 
-     List<Details> detailsList = new ArrayList<>();
+     List<com.amplifyframework.datastore.generated.model.Details> detailsList = new ArrayList<>();
 
-    public DetailsAdapter(List<Details> detailsList) {
+    public DetailsAdapter(List<com.amplifyframework.datastore.generated.model.Details> detailsList) {
         this.detailsList = detailsList;
     }
 
     public static class DetailsViewHolder extends RecyclerView.ViewHolder{
 
-            public Details details;
+            public com.amplifyframework.datastore.generated.model.Details details;
             View itemView;
         public DetailsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -48,9 +50,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsV
         TextView body = detailsViewHolder.itemView.findViewById(R.id.bodyDetails);
         TextView states = detailsViewHolder.itemView.findViewById(R.id.statesDetails);
 
-        title.setText(detailsViewHolder.details.title);
-        body.setText(detailsViewHolder.details.body);
-        states.setText(detailsViewHolder.details.state);
+        title.setText(detailsViewHolder.details.getTitle());
+        body.setText(detailsViewHolder.details.getBody());
+        states.setText(detailsViewHolder.details.getState());
 
 
         detailsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +63,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsV
                 intent.putExtra("title", detailsList.get(i).getTitle());
                 intent.putExtra("body", detailsList.get(i).getBody());
                 intent.putExtra("state", detailsList.get(i).getState());
+                intent.putExtra("image", detailsList.get(i).getImageName());
                 view.getContext().startActivity(intent);
 
             }

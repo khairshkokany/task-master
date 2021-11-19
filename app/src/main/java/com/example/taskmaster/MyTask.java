@@ -27,6 +27,7 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Details;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,37 +60,6 @@ public class MyTask extends AppCompatActivity {
                 }
             });
 
-//        Button button2 = findViewById(R.id.task1);
-//        button2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MyTask.this , TaskDetailsPage.class);
-//                String task1 = "This Is Task 1 Nothing Is Here Go To Task 2 Please .! ";
-//                intent.putExtra("task" , task1);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button button3 = findViewById(R.id.task2);
-//        button3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MyTask.this , TaskDetailsPage.class);
-//                String task2 = "Umm Can You Go Out Please I'm So Busy Ty :) ";
-//                intent.putExtra("task" , task2);
-//                startActivity(intent);
-//            }
-//        });
-//            Button button4 = findViewById(R.id.task3);
-//            button4.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent4 = new Intent(MyTask.this , TaskDetailsPage.class);
-//                    String task3 = "Umm After You Finshed From Task 1 and 2 You Come To Me ? , Please Get Out And Don't let Me See U Again :)";
-//                    intent4.putExtra("task" , task3);
-//                    startActivity(intent4);
-//                }
-//            });
             Button button5 = findViewById(R.id.Settings);
             button5.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -99,12 +69,12 @@ public class MyTask extends AppCompatActivity {
                 }
             });
 
-        ArrayList<Details> detailsArrayList = new ArrayList<Details>();
-
-        detailsArrayList.add(new Details("New Data " , "Welcome To Our Application" , "NEW"));
-        detailsArrayList.add(new Details("Error1" , "Please Make Sure You Put a Correct Data Ty :) " , "Assigned"));
-        detailsArrayList.add(new Details("Test" , "Please Waiting We Are Checking If You Have A Error Or Not !" , "in Progress "));
-        detailsArrayList.add(new Details("Information" , "Nice Everything Is Good You Can Discover Our Application Thank You For Choosing Us " , "Complete"));
+//        ArrayList<com.amplifyframework.datastore.generated.model.Details> detailsArrayList = new ArrayList<>();
+//
+//        detailsArrayList.add(new Details("New Data " , "Welcome To Our Application" , "NEW"));
+//        detailsArrayList.add(new Details("Error1" , "Please Make Sure You Put a Correct Data Ty :) " , "Assigned"));
+//        detailsArrayList.add(new Details("Test" , "Please Waiting We Are Checking If You Have A Error Or Not !" , "in Progress "));
+//        detailsArrayList.add(new Details("Information" , "Nice Everything Is Good You Can Discover Our Application Thank You For Choosing Us " , "Complete"));
 
 //        // here I Will Take The Recycler View
 //        RecyclerView taskRec = findViewById(R.id.recyclerViewMain);
@@ -126,30 +96,6 @@ public class MyTask extends AppCompatActivity {
             Log.e(TAG, "onCreate: Colud not initialize Amplify ",e );
         }
 
-            List<Details> detailsList = new ArrayList<>();
-            RecyclerView alltasks = findViewById(R.id.recyclerViewMain);
-            alltasks.setLayoutManager(new LinearLayoutManager(this));
-            alltasks.setAdapter(new DetailsAdapter(detailsList));
-
-        Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
-            @Override
-            public boolean handleMessage(@NonNull Message message) {
-                alltasks.getAdapter().notifyDataSetChanged();
-                return false;
-            }
-        });
-        Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Details.class) ,
-                response -> {
-                    for (com.amplifyframework.datastore.generated.model.Details details : response.getData()) {
-                        Details details1 = new Details(details.getTitle(), details.getBody(), details.getState());
-                        Log.i("graph of khair is here for testing ", details.getTitle());
-                        detailsList.add(details1);
-                    }
-                    handler.sendEmptyMessage(1);
-
-                },
-                error -> Log.e(TAG, "onCreate: Query failure",error )
-                );
 
         try {
 
@@ -199,6 +145,8 @@ public class MyTask extends AppCompatActivity {
         TextView user = findViewById(R.id.username);
         user.setText("Welcome "  +  username);
 
+        recycleView();
+
 // ---------START---------- this is for room database locally -------------------
         // this is to get the database and render it in my task with recyclerView
 //        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
@@ -221,4 +169,34 @@ public class MyTask extends AppCompatActivity {
 
 
     }
+
+    private void recycleView () {
+
+        List<com.amplifyframework.datastore.generated.model.Details> detailsList = new ArrayList<>();
+        RecyclerView alltasks = findViewById(R.id.recyclerViewMain);
+        alltasks.setLayoutManager(new LinearLayoutManager(this));
+        alltasks.setAdapter(new DetailsAdapter(detailsList));
+
+        Handler handler = new Handler(Looper.myLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message message) {
+                alltasks.getAdapter().notifyDataSetChanged();
+                return false;
+            }
+        });
+        Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Details.class) ,
+                response -> {
+                    for (com.amplifyframework.datastore.generated.model.Details details : response.getData()) {
+//                        Details details1 = new Details(details.getTitle(), details.getBody(), details.getState());
+                        Log.i("graph of khair is here for testing ", details.getTitle());
+                        detailsList.add(details);
+                    }
+                    handler.sendEmptyMessage(1);
+
+                },
+                error -> Log.e(TAG, "onCreate: Query failure",error )
+        );
+
+    }
+
 }
