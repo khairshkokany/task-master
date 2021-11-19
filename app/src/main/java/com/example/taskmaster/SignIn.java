@@ -64,7 +64,7 @@ public class SignIn extends AppCompatActivity {
 
                     Intent intent = new Intent(SignIn.this, MyTask.class);
                     startActivity(intent);
-
+                    MyTask.analyticsEvent();
                 }
             });
 

@@ -55,6 +55,8 @@ public class ConfirmPage extends AppCompatActivity {
                     Intent intent = new Intent(ConfirmPage.this, SignIn.class);
 
                     startActivity(intent);
+                    MyTask.analyticsEvent();
+
 
                 }
             });

@@ -32,6 +32,8 @@ import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.analytics.AnalyticsEvent;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
@@ -59,13 +61,16 @@ public class MyTask extends AppCompatActivity {
         createNotificationChannel();
 
 
+
         Button button = findViewById(R.id.AddTask);
 // toolbar jamal
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyTask.this , AddTask.class);
+
                 startActivity(intent);
+                analyticsEvent();
             }
         });
 
@@ -76,6 +81,7 @@ public class MyTask extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent1 = new Intent(MyTask.this , AllTask.class);
                     startActivity(intent1);
+                    analyticsEvent();
                 }
             });
 
@@ -85,6 +91,8 @@ public class MyTask extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent5 = new Intent(MyTask.this , Settings.class);
                     startActivity(intent5);
+                    analyticsEvent();
+
                 }
             });
 
@@ -106,19 +114,14 @@ public class MyTask extends AppCompatActivity {
 //        taskRec.setAdapter(new DetailsAdapter(detailsArrayList));
 
 
-        try {
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i(TAG, "onCreate: initialized Amplify");
 
-        } catch (AmplifyException e) {
-            Log.e(TAG, "onCreate: Colud not initialize Amplify ",e );
-        }
 
 
         try {
 
             Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
             Log.i(TAG, "onCreate: initialized Amplify");
@@ -142,10 +145,12 @@ public class MyTask extends AppCompatActivity {
                 Amplify.Auth.signOut(
                         () -> Log.i("AuthQuickstart", "Signed out successfully"),
                         error -> Log.e("AuthQuickstart", error.toString())
+
                 );
 
                 Intent intent = new Intent(MyTask.this , SignIn.class);
                 startActivity(intent);
+                analyticsEvent();
             }
         });
 
@@ -215,7 +220,7 @@ public class MyTask extends AppCompatActivity {
                 },
                 error -> Log.e(TAG, "onCreate: Query failure",error )
         );
-
+        analyticsEvent();
     }
 
 
@@ -274,4 +279,13 @@ public class MyTask extends AppCompatActivity {
         }
     }
 
+    public static void analyticsEvent () {
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("Main Activity ")
+                .addProperty("Add Task", "Text Option")
+                .addProperty("Successful", true)
+                .build();
+        Amplify.Analytics.recordEvent(event);
+
+    }
 }
