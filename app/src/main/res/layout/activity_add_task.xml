@@ -132,10 +132,11 @@
         android:text="@string/total_tasks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815" />
+        app:layout_constraintVertical_bias="0.781" />
+
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -159,5 +160,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageShare"
+        android:layout_width="143dp"
+        android:layout_height="127dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -49,7 +50,7 @@ public static final String TAG = "ADD TASK";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-
+    sharePhoto();
     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     try {
@@ -127,6 +128,7 @@ public static final String TAG = "ADD TASK";
             public void onClick(View view) {
 
                 uploadInputStream();
+
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
                 intent = Intent.createChooser(intent,"intent");
@@ -192,6 +194,24 @@ public static final String TAG = "ADD TASK";
             e.printStackTrace();
         }
     }
+
+    private void sharePhoto() {
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        ImageView image = findViewById(R.id.imageShare);
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.startsWith("image/*")) {
+                Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                if (imageUri != null) {
+                    image.setImageURI(imageUri);
+                    image.setVisibility(View.VISIBLE);
+
+                }
+            }
+        }
+    }
+
 
     }
 

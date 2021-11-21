@@ -32,7 +32,6 @@ public class SignIn extends AppCompatActivity {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSS3StoragePlugin());
             Log.i(TAG, "onCreate: initialized Amplify");
         }catch (Exception e) {
@@ -64,7 +63,7 @@ public class SignIn extends AppCompatActivity {
 
                     Intent intent = new Intent(SignIn.this, MyTask.class);
                     startActivity(intent);
-                    MyTask.analyticsEvent();
+//                    MyTask.analyticsEvent();
                 }
             });
 
