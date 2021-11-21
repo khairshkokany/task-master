@@ -70,7 +70,7 @@ public class MyTask extends AppCompatActivity {
                 Intent intent = new Intent(MyTask.this , AddTask.class);
 
                 startActivity(intent);
-                analyticsEvent();
+//                analyticsEvent();
             }
         });
 
@@ -81,7 +81,7 @@ public class MyTask extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent1 = new Intent(MyTask.this , AllTask.class);
                     startActivity(intent1);
-                    analyticsEvent();
+//                    analyticsEvent();
                 }
             });
 
@@ -91,7 +91,7 @@ public class MyTask extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent5 = new Intent(MyTask.this , Settings.class);
                     startActivity(intent5);
-                    analyticsEvent();
+//                    analyticsEvent();
 
                 }
             });
@@ -150,7 +150,7 @@ public class MyTask extends AppCompatActivity {
 
                 Intent intent = new Intent(MyTask.this , SignIn.class);
                 startActivity(intent);
-                analyticsEvent();
+//                analyticsEvent();
             }
         });
 
@@ -220,7 +220,7 @@ public class MyTask extends AppCompatActivity {
                 },
                 error -> Log.e(TAG, "onCreate: Query failure",error )
         );
-        analyticsEvent();
+//        analyticsEvent();
     }
 
 
@@ -278,14 +278,14 @@ public class MyTask extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
         }
     }
-
-    public static void analyticsEvent () {
-        AnalyticsEvent event = AnalyticsEvent.builder()
-                .name("Main Activity ")
-                .addProperty("Add Task", "Text Option")
-                .addProperty("Successful", true)
-                .build();
-        Amplify.Analytics.recordEvent(event);
-
-    }
+//
+//    public static void analyticsEvent () {
+//        AnalyticsEvent event = AnalyticsEvent.builder()
+//                .name("Main Activity ")
+//                .addProperty("Add Task", "Text Option")
+//                .addProperty("Successful", true)
+//                .build();
+//        Amplify.Analytics.recordEvent(event);
+//
+//    }
 }
