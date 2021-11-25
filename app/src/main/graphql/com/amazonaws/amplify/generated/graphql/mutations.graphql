@@ -9,6 +9,8 @@ mutation CreateDetails(
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt
@@ -26,6 +28,8 @@ mutation UpdateDetails(
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt
@@ -43,6 +47,8 @@ mutation DeleteDetails(
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt

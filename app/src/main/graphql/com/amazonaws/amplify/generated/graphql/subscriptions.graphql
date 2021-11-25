@@ -6,6 +6,8 @@ subscription OnCreateDetails {
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt
@@ -20,6 +22,8 @@ subscription OnUpdateDetails {
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt
@@ -34,6 +38,8 @@ subscription OnDeleteDetails {
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt

@@ -64,6 +64,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.DetailsV
                 intent.putExtra("body", detailsList.get(i).getBody());
                 intent.putExtra("state", detailsList.get(i).getState());
                 intent.putExtra("image", detailsList.get(i).getImageName());
+                intent.putExtra("lon", detailsList.get(i).getLon());
+                intent.putExtra("lat", detailsList.get(i).getLat());
                 view.getContext().startActivity(intent);
 
             }

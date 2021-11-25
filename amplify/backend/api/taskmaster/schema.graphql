@@ -4,4 +4,6 @@ type Details @model{
     body: String
     state: String
     imageName : String
+    lon : Float
+    lat : Float
 }
