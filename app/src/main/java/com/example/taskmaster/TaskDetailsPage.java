@@ -10,16 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-public class TaskDetailsPage extends AppCompatActivity {
+public class TaskDetailsPage extends AppCompatActivity  implements OnMapReadyCallback {
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details_page);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
@@ -67,11 +76,25 @@ public class TaskDetailsPage extends AppCompatActivity {
         Log.i("url", "onCreate: "+ image.getId());
         Picasso.get().load(url).into(image);
 
-
-
+        SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        supportMapFragment.getMapAsync(this);
 
 
     }
 
 
+
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        this.googleMap = googleMap;
+        Intent intent = getIntent();
+        LatLng myLocation = new LatLng(getIntent().getDoubleExtra("lat", intent.getFloatExtra("lat",0)),
+                getIntent().getDoubleExtra("lon", intent.getFloatExtra("lon",0)));
+        googleMap.addMarker(new MarkerOptions().position(myLocation).title("My Location In Jordan"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+    }
 }
+
+

@@ -25,11 +25,15 @@ public final class Details implements Model {
   public static final QueryField BODY = field("Details", "body");
   public static final QueryField STATE = field("Details", "state");
   public static final QueryField IMAGE_NAME = field("Details", "imageName");
+  public static final QueryField LON = field("Details", "lon");
+  public static final QueryField LAT = field("Details", "lat");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String") String body;
   private final @ModelField(targetType="String") String state;
   private final @ModelField(targetType="String") String imageName;
+  private final @ModelField(targetType="Float") Double lon;
+  private final @ModelField(targetType="Float") Double lat;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -52,6 +56,14 @@ public final class Details implements Model {
       return imageName;
   }
   
+  public Double getLon() {
+      return lon;
+  }
+  
+  public Double getLat() {
+      return lat;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -60,12 +72,14 @@ public final class Details implements Model {
       return updatedAt;
   }
   
-  private Details(String id, String title, String body, String state, String imageName) {
+  private Details(String id, String title, String body, String state, String imageName, Double lon, Double lat) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
     this.imageName = imageName;
+    this.lon = lon;
+    this.lat = lat;
   }
   
   @Override
@@ -81,6 +95,8 @@ public final class Details implements Model {
               ObjectsCompat.equals(getBody(), details.getBody()) &&
               ObjectsCompat.equals(getState(), details.getState()) &&
               ObjectsCompat.equals(getImageName(), details.getImageName()) &&
+              ObjectsCompat.equals(getLon(), details.getLon()) &&
+              ObjectsCompat.equals(getLat(), details.getLat()) &&
               ObjectsCompat.equals(getCreatedAt(), details.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), details.getUpdatedAt());
       }
@@ -94,6 +110,8 @@ public final class Details implements Model {
       .append(getBody())
       .append(getState())
       .append(getImageName())
+      .append(getLon())
+      .append(getLat())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -109,6 +127,8 @@ public final class Details implements Model {
       .append("body=" + String.valueOf(getBody()) + ", ")
       .append("state=" + String.valueOf(getState()) + ", ")
       .append("imageName=" + String.valueOf(getImageName()) + ", ")
+      .append("lon=" + String.valueOf(getLon()) + ", ")
+      .append("lat=" + String.valueOf(getLat()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -133,6 +153,8 @@ public final class Details implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -142,7 +164,9 @@ public final class Details implements Model {
       title,
       body,
       state,
-      imageName);
+      imageName,
+      lon,
+      lat);
   }
   public interface TitleStep {
     BuildStep title(String title);
@@ -155,6 +179,8 @@ public final class Details implements Model {
     BuildStep body(String body);
     BuildStep state(String state);
     BuildStep imageName(String imageName);
+    BuildStep lon(Double lon);
+    BuildStep lat(Double lat);
   }
   
 
@@ -164,6 +190,8 @@ public final class Details implements Model {
     private String body;
     private String state;
     private String imageName;
+    private Double lon;
+    private Double lat;
     @Override
      public Details build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -173,7 +201,9 @@ public final class Details implements Model {
           title,
           body,
           state,
-          imageName);
+          imageName,
+          lon,
+          lat);
     }
     
     @Override
@@ -201,6 +231,18 @@ public final class Details implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep lon(Double lon) {
+        this.lon = lon;
+        return this;
+    }
+    
+    @Override
+     public BuildStep lat(Double lat) {
+        this.lat = lat;
+        return this;
+    }
+    
     /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -213,12 +255,14 @@ public final class Details implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, String state, String imageName) {
+    private CopyOfBuilder(String id, String title, String body, String state, String imageName, Double lon, Double lat) {
       super.id(id);
       super.title(title)
         .body(body)
         .state(state)
-        .imageName(imageName);
+        .imageName(imageName)
+        .lon(lon)
+        .lat(lat);
     }
     
     @Override
@@ -239,6 +283,16 @@ public final class Details implements Model {
     @Override
      public CopyOfBuilder imageName(String imageName) {
       return (CopyOfBuilder) super.imageName(imageName);
+    }
+    
+    @Override
+     public CopyOfBuilder lon(Double lon) {
+      return (CopyOfBuilder) super.lon(lon);
+    }
+    
+    @Override
+     public CopyOfBuilder lat(Double lat) {
+      return (CopyOfBuilder) super.lat(lat);
     }
   }
   

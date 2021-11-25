@@ -17,6 +17,8 @@ query SyncDetails(
       body
       state
       imageName
+      lon
+      lat
       _version
       _deleted
       _lastChangedAt
@@ -34,6 +36,8 @@ query GetDetails($id: ID!) {
     body
     state
     imageName
+    lon
+    lat
     _version
     _deleted
     _lastChangedAt
@@ -53,6 +57,8 @@ query ListDetailss(
       body
       state
       imageName
+      lon
+      lat
       _version
       _deleted
       _lastChangedAt

@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Settings extends AppCompatActivity {
 
+    public static final String ACTION_LOCATION_SOURCE_SETTINGS = "ActionLocationSourceSettings";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

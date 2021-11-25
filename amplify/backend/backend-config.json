@@ -9,7 +9,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 35,
-              "apiKeyExpirationDate": "2021-12-22T14:49:47.376Z",
+              "apiKeyExpirationDate": "2021-12-27T14:59:59.808Z",
               "description": "khair keys"
             }
           },
